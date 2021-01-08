@@ -6,7 +6,7 @@ const IndexController = require('../controllers/IndexController');
 const ProductsContorller = require('../controllers/ProductsController');
 const CategoryController = require('../controllers/CategoriesController')
 const OrdersController = require('../controllers/OrdersController')
-
+const OrderStatutesController = require('../controllers/OrderStatusesController')
 /* GET home page. */
 router.get('/', IndexController.home);
 
@@ -25,6 +25,10 @@ router.get('/orders', errors.catchAsync(OrdersController.findAll));
 router.post('/orders', errors.catchAsync(OrdersController.create));
 router.put('/orders?fields=id,status', errors.catchAsync(OrdersController.update));
 router.get('/orders/status/:id', errors.catchAsync(OrdersController.findAll));
+
+
+/* GET /categories */
+router.get('/status', errors.catchAsync(OrderStatutesController.findAll));
 
 
 module.exports = router;
