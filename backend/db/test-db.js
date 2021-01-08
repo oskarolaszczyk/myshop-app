@@ -1,6 +1,7 @@
 require('./mongoose')
 const User = require('./models/user')
 const Category = require('./models/category')
+const Product = require('./models/product')
 
 const createUser = async (data) => {
       try {
@@ -41,9 +42,41 @@ const findCategories = async () => {
       }
 }
 
+const createProduct = async (data) => {
+      try {
+            const product = new Product(data)
+            await product.save()
+            console.log(product)
+      } catch (err) {
+            console.log(err)
+      }
+}
+
+const findProducts = async () => {
+      try {
+            //TODO wyswietlanie zamiast id to nazwe kateogrii
+            const product = await Product.find({}).populate('categories');
+            console.log(product)
+      } catch (error) {
+            console.log(error)    
+      }
+}
+
+
 // findUsers()
 
 // createCategory({
 //       name: 'lenovo11'
 // })
 // findCategories()
+
+// createProduct({
+//       name: 'Lenovo Notebook v1',
+//       description: 'Super laptop',
+//       price: 2200,
+//       weight: 22.33,
+//       categories: "5ff886269444373d401115a1"
+
+// })
+
+findProducts()
