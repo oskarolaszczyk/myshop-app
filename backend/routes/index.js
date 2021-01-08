@@ -5,7 +5,7 @@ const errors = require('../middlewares/errors')
 const IndexController = require('../controllers/IndexController');
 const ProductsContorller = require('../controllers/ProductsController');
 const CategoryController = require('../controllers/CategoriesController')
-
+const OrdersController = require('../controllers/OrdersController')
 
 /* GET home page. */
 router.get('/', IndexController.home);
@@ -20,7 +20,11 @@ router.get('/products/:slug', errors.catchAsync(ProductsContorller.findOne));
 router.post('/products', errors.catchAsync(ProductsContorller.create));
 router.put('/products/:slug', errors.catchAsync(ProductsContorller.update));
 
-
+/* GET /orders */
+router.get('/orders', errors.catchAsync(OrdersController.findAll));
+router.post('/orders', errors.catchAsync(OrdersController.create));
+router.put('/orders?fields=id,status', errors.catchAsync(OrdersController.update));
+router.get('/orders/status/:id', errors.catchAsync(OrdersController.findAll));
 
 
 module.exports = router;
