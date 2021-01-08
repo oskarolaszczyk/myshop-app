@@ -1,3 +1,5 @@
+//TODO rozlozyc ten plik na inne pliki
+
 require('./mongoose')
 const User = require('./models/user')
 const Category = require('./models/category')
@@ -125,7 +127,7 @@ const findOrderStatuses = async () => {
 //       phone: '671999887',
 //       products: {product_id: "5ff8a0ae39d85348dddf5972", count: 2}
 // })
-findOrders()
+// findOrders()
 // createOrderStatus({name: 'not approved'})
 // createOrderStatus({name: 'approved'})
 // createOrderStatus({name: 'canceled'})

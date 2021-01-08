@@ -8,6 +8,7 @@ const ordersStatusSchema = new mongoose.Schema({
           type: String,
           lowercase: true,
           required: true,
+          unique: true,
           validate(value) {
             if (!predifinedNames.includes(this.name)) {throw new Error('Use predifiend names!')}
           }
