@@ -43,7 +43,7 @@ const findCategories = async () => {
 
 // findUsers()
 
-createCategory({
-      name: 'testCategory'
-})
-findCategories()
+// createCategory({
+//       name: 'lenovo11'
+// })
+// findCategories()
