@@ -9,13 +9,18 @@ const CategoryController = require('../controllers/CategoriesController')
 
 /* GET home page. */
 router.get('/', IndexController.home);
-router.get('/products', ProductsContorller.getAll);
-router.get('/products/:id', ProductsContorller.getById);
-router.post('/products', ProductsContorller.store);
-router.put('/products/:id', ProductsContorller.updateById);
+
 
 /* GET /categories */
 router.get('/categories', errors.catchAsync(CategoryController.findAll));
+
+/* GET /products */
+router.get('/products', errors.catchAsync(ProductsContorller.findAll));
+router.get('/products/:slug', errors.catchAsync(ProductsContorller.findOne));
+router.post('/products', errors.catchAsync(ProductsContorller.create));
+router.put('/products/:slug', errors.catchAsync(ProductsContorller.update));
+
+
 
 
 module.exports = router;

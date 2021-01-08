@@ -6,7 +6,6 @@ const Category = require('./models/category')
 const Product = require('./models/product')
 const OrderStatus = require('./models/order-status')
 const Order = require('./models/order')
-const products = require('../data/ProductData')
 
 const createUser = async (data) => {
       try {
@@ -116,7 +115,7 @@ const findOrderStatuses = async () => {
 
 // })
 
-// findProducts()
+findProducts()
 
 
 // createOrder({
