@@ -14,13 +14,14 @@ const productSchema = new mongoose.Schema({
             type: String,
 
       },
+      //TODO dodac walidacje 
       price: {
-            type: Decimal128,
+            type: Number,
       },
       weight: {
-            type: Decimal128,
+            type: Number,
       },
-      categories: {
+      category: {
             type: mongoose.Schema.Types.ObjectId,
             ref: Category
       }
