@@ -13,20 +13,26 @@ async function findAll(req, res) {
 }
   
 async function create(req, res) {
-      const product = await new Product({
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            weight: req.body.weight,
-            category: req.body.categoryID,
-      }).save();
+      try {
+            const product = await new Product({
+                  name: req.body.name,
+                  description: req.body.description,
+                  price: req.body.price,
+                  weight: req.body.weight,
+                  category: req.body.categoryID,
+            }).save();
 
-      return res.status(201).send({ data: product, message: `Product was created` });
+            return res.status(201).send({ data: product, message: `Product was created` });
+
+      } catch (err) {
+            return res.status(400).send({message: `Product was not created, bad request`, error: err});
+      }
 }
 
 async function update(req, res, next) {
       let product = await Product.findOne({ slug: req.params.slug });
-      if (!product) return next();
+      if (!product) return res.status(404).send({message: `Product was not updated, bad request`});
+
 
       const updatedProduct = await Product.updateOne(
             {

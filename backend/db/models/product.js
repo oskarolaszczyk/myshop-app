@@ -16,11 +16,15 @@ const productSchema = new mongoose.Schema({
       },
       price: {
             type: Number,
-            min: 0.01
+            min: 0.01,
+            required: true,
+
       },
       weight: {
             type: Number,
-            min: 0.01
+            min: 0.01,
+            required: true,
+
       },
       category: {
             type: mongoose.Schema.Types.ObjectId,

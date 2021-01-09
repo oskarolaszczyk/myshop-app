@@ -18,12 +18,17 @@ const orderSchema = new mongoose.Schema({
       },
       userName: {
             type: String,
+            required: true,
+
       },
       email: {
             type: String,
+            required: true,
       },
       phone: {
             type: String,
+            required: true,
+
       },
       products: [{
             product_id : {
