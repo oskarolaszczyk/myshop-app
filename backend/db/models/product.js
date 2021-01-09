@@ -12,14 +12,17 @@ const productSchema = new mongoose.Schema({
       },
       description: {
             type: String,
+            required: true,
 
       },
       //TODO dodac walidacje 
       price: {
             type: Number,
+            min: 0.01
       },
       weight: {
             type: Number,
+            min: 0.01
       },
       category: {
             type: mongoose.Schema.Types.ObjectId,

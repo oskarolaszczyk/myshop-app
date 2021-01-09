@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var cors = require('cors');
 
+const errors = require('./middlewares/errors')
+
 
 
 //db
@@ -33,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
+// errors handling
+// app.use(errors.notFound());
+// app.use(errors.catchErrors());
 //app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

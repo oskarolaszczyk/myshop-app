@@ -7,7 +7,8 @@ async function findOne(req, res, next) {
 }
   
 async function findAll(req, res) {
-      const products = await Product.find().sort({ createdAt: 'desc' });
+      const products = await Product.find().sort({ createdAt: 'desc' })
+                                          .populate('category','-slug -createdAt -updatedAt -__v');
       return res.status(200).send({ data: products });
 }
   
@@ -20,7 +21,7 @@ async function create(req, res) {
             category: req.body.categoryID,
       }).save();
 
-      return res.status(201).send({ data: category, message: `Product was created` });
+      return res.status(201).send({ data: product, message: `Product was created` });
 }
 
 async function update(req, res, next) {
@@ -34,15 +35,15 @@ async function update(req, res, next) {
       product.weight =  req.body.weight,
       product.category = req.body.categoryID
 
-      await song.save();
+      await product.save();
 
-      return res.status(200).send({ data: category, message: `Product was updated` });
+      return res.status(200).send({ data: product, message: `Product was updated` });
 }
   
 async function remove(req, res, next) {
       const product = await Product.findOne({ slug: req.params.slug });
-      if (!category) return next();
-      await category.remove();
+      if (!product) return next();
+      await product.remove();
 
       return res.status(200).send({ message: `Product was removed` });
 }
