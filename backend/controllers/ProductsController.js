@@ -28,14 +28,16 @@ async function update(req, res, next) {
       const product = await Product.findOne({ slug: req.params.slug });
       if (!product) return next();
       
-      
+      product.upda
       product.name =  req.body.name
       product.description = req.body.description
       product.price = req.body.price
       product.weight =  req.body.weight,
       product.category = req.body.categoryID
 
-      await product.save();
+      
+
+     await product.save();
 
       return res.status(200).send({ data: product, message: `Product was updated` });
 }

@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema({
             
       },
       orderStatus: {
+            //TODO dodac walidacja
             type: mongoose.Schema.Types.ObjectId,
             ref: OrderStatus
 
