@@ -1,4 +1,3 @@
-const { Decimal128 } = require('mongodb');
 const mongoose = require('mongoose')
 const URLSlugs = require('mongoose-url-slugs');
 const Category = require('./category')
@@ -15,7 +14,6 @@ const productSchema = new mongoose.Schema({
             required: true,
 
       },
-      //TODO dodac walidacje 
       price: {
             type: Number,
             min: 0.01
