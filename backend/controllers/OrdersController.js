@@ -19,23 +19,33 @@ async function findAll(req, res) {
 }
   
 async function create(req, res) {
-      console.log(req.body.products)
-      const order = await new Order({
-            date:  req.body.date,
-            orderStatus: req.body.orderStatusID,
-            userName: req.body.userName,
-            email: req.body.email,
-            phone: req.body.phone,
-            products: req.body.products,
+      try {
+            console.log(req.body.products)
+            const order = await new Order({
+                  date:  req.body.date,
+                  orderStatus: req.body.orderStatusID,
+                  userName: req.body.userName,
+                  email: req.body.email,
+                  phone: req.body.phone,
+                  products: req.body.products,
+      
+            }).save()
+      
+            return res.status(201).send({ data: order, message: `Order was created` });
+      } catch (err) {
+            return res.status(400).send({message: `Order was not created`, error: err });
 
-      }).save()
-
-      return res.status(201).send({ data: order, message: `Order was created` });
+      }
 }
 
 async function update(req, res, next) {
-      let order = await Order.findOne({ _id: req.params.id });
-      if (!order) return next();
+  try {
+            let order = await Order.findOne({ _id: req.params.id });
+            if (!order) return res.status(404).send({message: `Order was not updated` });
+            
+  } catch (err) {
+      return res.status(400).send({message: `Order was not updated`, error: err });
+  }
       
 
       const updatedOrder = await Order.updateOne(
