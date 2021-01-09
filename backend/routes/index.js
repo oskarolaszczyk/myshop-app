@@ -25,9 +25,9 @@ router.put('/products/:slug', errors.catchAsync(ProductsContorller.update));
 router.get('/orders', errors.catchAsync(OrdersController.findAll));
 //TODO fix put and post method
 router.post('/orders', errors.catchAsync(OrdersController.create));
-router.put('/orders?fields=id,status', errors.catchAsync(OrdersController.update));
+router.put('/orders/:id', errors.catchAsync(OrdersController.update));
 //TODO add another method to get method
-router.get('/orders/status/:id', errors.catchAsync(OrdersController.findAll));
+router.get('/orders/status/:id', errors.catchAsync(OrdersController.findOne));
 
 
 /* GET /categories */

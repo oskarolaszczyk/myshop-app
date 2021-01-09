@@ -1,7 +1,6 @@
 //TODO rozlozyc ten plik na inne pliki
 
 require('./mongoose')
-const User = require('./models/user')
 const Category = require('./models/category')
 const Product = require('./models/product')
 const OrderStatus = require('./models/order-status')
@@ -106,32 +105,32 @@ const findOrderStatuses = async () => {
 
 
 //create
-createOrderStatus({name: 'not approved'})
-createOrderStatus({name: 'approved'})
-createOrderStatus({name: 'canceled'})
-createOrderStatus({name: 'completed'})
+// createOrderStatus({name: 'not approved'})
+// createOrderStatus({name: 'approved'})
+// createOrderStatus({name: 'canceled'})
+// createOrderStatus({name: 'completed'})
 
 
-createCategory({ name: 'laptop'})
-createCategory({ name: 'phone'})
-createCategory({ name: 'pc'})
+// createCategory({ name: 'laptop'})
+// createCategory({ name: 'phone'})
+// createCategory({ name: 'pc'})
 
-createProduct({
-      name: 'Lenovo Notebook v1',
-      description: 'Super laptop',
-      price: 2200,
-      weight: 22.33,
-      category: "5ff89fbca617ea48413b4ad8"
+// createProduct({
+//       name: 'Lenovo Notebook v1',
+//       description: 'Super laptop',
+//       price: 2200,
+//       weight: 22.33,
+//       category: "5ff89fbca617ea48413b4ad8"
 
-})
+// })
 
 createOrder({
-      date: '2002-12-09',
+      date: '2010-12-09',
       orderStatus: "5ff8a01cd46aeb48742770f0",
-      userName: 'oskar1',
-      email: 'oskar@gmail.com',
+      userName: 'oskar123',
+      email: '123@gmail.com',
       phone: '671999887',
-      products: {product_id: "5ff8a0ae39d85348dddf5972", count: 2}
+      products: [{product_id: "5ff8a0ae39d85348dddf5972", count: 2}, {product_id: "5ff8a0ae39d85348dddf5972", count: 20}]
 })
 
 

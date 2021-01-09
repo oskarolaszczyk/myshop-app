@@ -25,7 +25,7 @@ const orderSchema = new mongoose.Schema({
       phone: {
             type: String,
       },
-      products: {
+      products: [{
             product_id : {
                   type: mongoose.Schema.Types.ObjectId,
                   ref: Product,
@@ -36,7 +36,7 @@ const orderSchema = new mongoose.Schema({
                   default: 1,
                   min: 1
             },
-      }
+      }]
       }, {
       timestamps: true
 });

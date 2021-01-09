@@ -1,15 +1,18 @@
 const Order = require('../db/models/order');
 
 async function findOne(req, res, next) {
-      const order = await Order.findOne({ slug: req.params.slug });
-      if (!product) return next();
-      return res.status(200).send({ data: order });
+      console.log(req.params.id)
+      //TODO dodac odwolanie przez sluga statusu a nie jego id 
+      const orders = await Order.find({ orderStatus: req.params.id });
+      //TODO ZROBIC ZEBY NIE ZWRACALO PUSTEGO TYLKO KOD BLEDU 
+      if (!orders) return next();
+      return res.status(200).send({ data: orders });
 }
   
 async function findAll(req, res) {
       const orders = await Order.find().sort({ createdAt: 'desc' })
                                           .populate({
-                                                path: 'products',
+                                                path: 'products orderStatus',
                                                 populate: { path: 'product_id'}
                                                 });
       return res.status(200).send({ data: orders });
@@ -25,30 +28,34 @@ async function create(req, res) {
             phone: req.body.phone,
             products: req.body.products,
 
-      }).save();
+      }).save()
 
       return res.status(201).send({ data: order, message: `Order was created` });
 }
 
 async function update(req, res, next) {
-      const order = await Order.findOne({ slug: req.params.slug });
+      let order = await Order.findOne({ _id: req.params.id });
       if (!order) return next();
       
-      
-      order.date =  req.body.date
-      order.orderStatus = req.body.orderStatusID
-      order.userName = req.body.userName
-      order.email =  req.body.email
-      order.phone = req.body.phone
-      order.products = req.body.products
 
-      await song.save();
+      const updatedOrder = await Order.updateOne(
+            {
+                  _id: req.params.id
+            }, 
+            {$set: 
+            {
+                  //TODO walidacja dla nieustawiania zlego statusu 
+                  orderStatus: req.body.orderStatusID,
+                
 
+      }})
+
+      order = await Order.findOne({ _id: req.params.id });
       return res.status(200).send({ data: order, message: `Order was updated` });
 }
   
 async function remove(req, res, next) {
-      const order = await Order.findOne({ slug: req.params.slug });
+      const order = await Order.findOne({ _id: req.params.id });
       if (!order) return next();
       await order.remove();
 
