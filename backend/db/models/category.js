@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 const URLSlugs = require('mongoose-url-slugs');
 
-const predfinedNames = ['lenovo', 'asus']
+const predifinedNames = ['phone', 'pc', 'laptop', 'gps']
 
 const categorySchema = new mongoose.Schema({
     name: {
           type: String,
           lowercase: true,
           required: true,
+          unique: true,
           validate(value) {
-            if (!predfinedNames.includes(this.name)) {throw new Error('Use predifiend names!')}
+            if (!predifinedNames.includes(this.name)) {throw new Error('Use predifiend names!')}
           }
     },
 }, {

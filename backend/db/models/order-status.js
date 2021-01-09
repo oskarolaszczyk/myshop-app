@@ -1,14 +1,16 @@
 const mongoose = require('mongoose')
 const URLSlugs = require('mongoose-url-slugs');
 
-const predinedNames = ['not approved', 'approved', 'canceled', 'completed']
+const predifinedNames = ['not approved', 'approved', 'canceled', 'completed']
+
 const ordersStatusSchema = new mongoose.Schema({
     name: {
           type: String,
           lowercase: true,
           required: true,
+          unique: true,
           validate(value) {
-            if (!predfinedNames.includes(this.value)) {throw new Error('Use predifiend names!')}
+            if (!predifinedNames.includes(this.name)) {throw new Error('Use predifiend names!')}
           }
     },
 }, {
