@@ -28,6 +28,10 @@ const orderSchema = new mongoose.Schema({
       phone: {
             type: String,
             required: true,
+            validate(val) {
+                  const phoneForm = /^\d{9}$/;
+                  if (!this.phone.match(phoneForm)) {throw new Error('Wrong number type!')}
+            },
 
       },
       products: [{
