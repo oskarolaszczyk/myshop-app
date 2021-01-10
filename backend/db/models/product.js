@@ -26,16 +26,23 @@ const productSchema = new mongoose.Schema({
             required: true,
 
       },
-      category: {
+      category: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: Category
-      }
+            ref: Category,
+            required: true,
+            
+      }]
       }, {
       timestamps: true
 });
 
 productSchema.plugin(URLSlugs('name', { field: 'slug', update: true }));
-
+productSchema.pre('save', function(next)  {
+      if (this.category.length == 0) {
+            throw new Error('At least one category')
+      }
+      next()
+})
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product

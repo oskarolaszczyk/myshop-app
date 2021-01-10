@@ -11,9 +11,9 @@ const orderSchema = new mongoose.Schema({
             
       },
       orderStatus: {
-            //TODO dodac walidacja
             type: mongoose.Schema.Types.ObjectId,
-            ref: OrderStatus
+            ref: OrderStatus,
+            required: true,
 
       },
       userName: {
@@ -34,9 +34,10 @@ const orderSchema = new mongoose.Schema({
             },
 
       },
-      products: [{
+      products: {
             product_id : {
-                  type: mongoose.Schema.Types.ObjectId,
+                  type: [mongoose.Schema.Types.ObjectId],
+                  required: true,
                   ref: Product,
       
             },
@@ -45,7 +46,7 @@ const orderSchema = new mongoose.Schema({
                   default: 1,
                   min: 1
             },
-      }]
+      }
       }, {
       timestamps: true
 });

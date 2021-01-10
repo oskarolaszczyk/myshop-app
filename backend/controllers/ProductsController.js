@@ -1,7 +1,7 @@
 const Product = require('../db/models/product');
 
 async function findOne(req, res, next) {
-      const product = await Product.findOne({ slug: req.params.slug });
+      const product = await Product.findOne({ slug: req.params.slug }).populate('category','-slug -createdAt -updatedAt -__v');
       if (!product) return next();
       return res.status(200).send({ data: product });
 }
@@ -19,7 +19,7 @@ async function create(req, res) {
                   description: req.body.description,
                   price: req.body.price,
                   weight: req.body.weight,
-                  category: req.body.categoryID,
+                  category: req.body.category,
             }).save();
 
             return res.status(201).send({ data: product, message: `Product was created` });
@@ -50,8 +50,7 @@ async function update(req, res, next) {
             product = await Product.findOne({ slug: req.params.slug });
             return res.status(200).send({ data: product, message: `Product was updated` });
       } catch (err) {
-            return res.status(400).send({message: `Product was not created, bad request`, error: err});
-
+                        return res.status(400).send({message: `Product was not created, bad request`, error: err});
       }
 }
   
