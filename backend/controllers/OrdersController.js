@@ -39,13 +39,13 @@ async function create(req, res) {
 }
 
 async function update(req, res, next) {
-  try {
-            let order = await Order.findOne({ _id: req.params.id });
-            if (!order) return res.status(404).send({message: `Order was not updated` });
-            
-  } catch (err) {
-      return res.status(400).send({message: `Order was not updated`, error: err });
-  }
+      try {
+                  let order = await Order.findOne({ _id: req.params.id });
+                  if (!order) return res.status(404).send({message: `Order was not updated` });
+                  
+      } catch (err) {
+            return res.status(400).send({message: `Order was not updated`, error: err });
+      }
       
 
       const updatedOrder = await Order.updateOne(

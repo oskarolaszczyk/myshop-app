@@ -33,21 +33,26 @@ async function update(req, res, next) {
       let product = await Product.findOne({ slug: req.params.slug });
       if (!product) return res.status(404).send({message: `Product was not updated, bad request`});
 
+      const query = {
+            slug: req.params.slug
+      }
+      const update = {$set: {
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            weight: req.body.weight,
+            category: req.body.categoryID
+      }}
+      const options = {runValidators: true}
 
-      const updatedProduct = await Product.updateOne(
-            {
-                  slug: req.params.slug
-            }, 
-            {$set: 
-            {
-                  name: req.body.name,
-                  description: req.body.description,
-                  price: req.body.price,
-                  weight: req.body.weight,
-                  category: req.body.categoryID,
-      }})
-      product = await Product.findOne({ slug: req.params.slug });
-      return res.status(200).send({ data: product, message: `Product was updated` });
+      try {
+            const updatedProduct = await Product.updateOne(query, update, options)
+            product = await Product.findOne({ slug: req.params.slug });
+            return res.status(200).send({ data: product, message: `Product was updated` });
+      } catch (err) {
+            return res.status(400).send({message: `Product was not created, bad request`, error: err});
+
+      }
 }
   
 async function remove(req, res, next) {
