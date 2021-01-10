@@ -27,7 +27,7 @@ router.get('/orders', errors.catchAsync(OrdersController.findAll));
 router.post('/orders', errors.catchAsync(OrdersController.create));
 router.put('/orders/:id', errors.catchAsync(OrdersController.update));
 //TODO add another method to get method
-router.get('/orders/status/:id', errors.catchAsync(OrdersController.findOne));
+router.get('/orders/status/:slug', errors.catchAsync(OrdersController.findOne));
 
 
 /* GET /categories */
