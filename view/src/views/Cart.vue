@@ -7,16 +7,9 @@
     <ContactDetails
           @details-event="handleDetails"        
     />
-    <div><p>details</p></div>
-    <div><p>{{details}}</p></div>
-    <div><p>orderedProducts</p></div>
-    <div><p>{{orderedProducts}}</p></div>
-
     <button class="btn btn-info col-sm-12" type="button" v-on:click="makeOrder()">Make an order</button>
-        <button class="btn btn-info col-sm-12" type="button" v-on:click="sendOrder()">SEND an order</button>
-
-    <div><p>order</p></div>
     <div><p>{{order}}</p></div>
+    <button class="btn btn-info col-sm-12" type="button" v-on:click="sendOrder()">Send an order</button>
 
     <Footer/>
   </div>
@@ -71,10 +64,47 @@ export default {
 
     },
     sendOrder: function () {
+      if(this.validateOrder()){
        axios.post('http://127.0.0.1:3000/orders', this.order )
        .then((res)=> {
-         console.warn(res)
+         console.warn(res);
        })
+       alert("Order accepted")
+       this.$router.push({ name: "MainPage"});
+      }
+    },
+    validateOrder: function () {
+      if (
+          typeof(this.order.phone) == 'undefined' || 
+          !this.order.phone.match(/^\d{9}$/) 
+          ) { 
+            alert("Order declined. Bad phone.")
+            return false; 
+          }
+      if (
+          typeof(this.order.userName) == 'undefined' || 
+          this.order.userName == null || 
+          this.order.userName == ""  
+          ) { 
+            alert("Order declined. Bad user name.")
+            return false; 
+          }
+      if (
+          typeof(this.order.email) == 'undefined' || 
+          this.order.email == null || 
+          this.order.email == "" 
+          ) { 
+            alert("Order declined. Bad email.")
+            return false; 
+          }
+      if (
+          typeof(this.order.products) == 'undefined' || 
+          !this.order.products.length > 0 
+           ) { 
+            alert("Order declined. There is no products in cart.")
+            return false; 
+          }
+      return true;
     },
     
   }
@@ -94,7 +124,12 @@ export default {
     font-size: 25px;
     text-transform: uppercase;
   }
-
+  button {
+    margin-top: 20px;
+  }
+  div {
+    margin-top: 20px;
+  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

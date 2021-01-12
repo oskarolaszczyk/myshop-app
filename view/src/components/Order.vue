@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h2>Cart</h2>
     <div id="tableFilms" ref="table">
       <table class="table-condensed table-hover">
         <tr>
@@ -44,9 +45,8 @@
       </table>
     </div>
     <div>
-      <h3>Total price: {{totalPrice}}</h3>
+      <h2>Total price: {{totalPrice}}</h2>
     </div>
-
     <div>
       <button class="btn btn-info col-sm-12" type="button" v-on:click="emitOrder">
         Confirm products

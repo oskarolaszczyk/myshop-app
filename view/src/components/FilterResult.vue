@@ -1,27 +1,19 @@
 <template>
   <form>
     <div class="form-group">
-      <label for=inputTitle>Title</label>
       <input type="text" v-model="inputTitle" class="form-control" placeholder="Enter a name of the product"/>
     </div>
     <div>
-      <button class="btn btn-info col-sm-12" type="button" v-on:click="search">Search</button>
-    </div>
-    <div id="tableFilms" ref="table">
-      <table class="table-condensed table-hover">
-        <tr>
-            <th>Name</th>
-        </tr>
-       <tr v-for="category in categories" v-bind:key="category.name"> 
-            <td>{{category._id}}</td>
-        </tr>
-    </table>
-  </div>
     <select name="LeaveType" v-model="leaveType" @change="onChange()"
-      class="form-control form-control-lg btn-info">
-      <option value="brak"> Brak wybranej kategorii </option>
+      class="form-control form-control-sm-12 btn-info">
+      <option value="brak">  </option>
       <option v-for="category in categories" v-bind:key="category.name" :value="category._id">{{category.name.toUpperCase()}}</option>
     </select>
+    </div>
+    <div style="height: 15px;"></div>
+    <div>
+      <button class="btn btn-info col-sm-12 mt-20" type="button" v-on:click="search">Search</button>
+    </div>
   </form>
   
 </template>

@@ -10,26 +10,11 @@
       :filteredProducts="allProductsFiltered"
       @cart-event="handleCart"
     />
-    <Footer />
-  
-      <div id="tableFilms2" ref="table3">
-      <table class="table-condensed table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>id</th>
-            <th>buy</th>
-        </tr>
-        <tr v-for="product in allProductsInCart" :key="product.name">
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.category[0]._id}}</td>
-        </tr>
-    </table>
-  </div>
-      <button @click="shareData()">button</button>
+      <div v-for="product in allProductsInCart" :key="product.name">{{product.name}}</div>
+      <div>
+        <button  class="btn btn-info col-sm-12 mt-20" @click="shareData()">Go to cart</button>
+    </div>
+    <Footer/>
   </div>
 </template>
 
@@ -90,6 +75,9 @@ h2 {
   margin-top: 20px;
   font-size: 25px;
   text-transform: uppercase;
+}
+div {
+  margin-top: 15px;
 }
 
 #app {

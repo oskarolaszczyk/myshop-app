@@ -1,43 +1,23 @@
 <template>
 <div>
-  <div id="tableFilms" ref="table">
+  <div class="tab" id="tableFilms" ref="table">
       <table class="table-condensed table-hover">
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>id</th>
             <th>buy</th>
         </tr>
         <tr v-for="product in filteredProducts" :key="product.name">
             <td>{{product.name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
-            <td>{{product.category[0]._id}}</td>
             <td> <button class="btn btn-info col-sm-12" type="button" v-on:click="addToCart(product)"  > BUY </button> </td>
         </tr>
     </table>
   </div>
-
-  <div id="tableFilms" ref="table2">
-      <table class="table-condensed table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>id</th>
-            <th>buy</th>
-        </tr>
-        <tr v-for="product in productsInCart" :key="product.name">
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.category[0]._id}}</td>
-        </tr>
-    </table>
-  </div>
     <div>
-      <button class="btn btn-info col-sm-12" type="button" v-on:click="makeAnOrder"> Make an order </button>
+      <button class="btn btn-info col-sm-12" type="button" v-on:click="makeAnOrder"> Confirm products </button>
     </div> 
   </div>
 </template>
@@ -86,11 +66,13 @@ li {
 a {
   color: #42b983;
 }
-  table {
-    width: 100%;
-  }
-
-  button {
-    margin-top: 20px;
-  }
+table {
+  width: 100%;
+}
+div {
+  margin-top: 20px;
+}
+button {
+  margin-top: 20px;
+}
 </style>
