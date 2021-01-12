@@ -13,6 +13,7 @@
     <div><p>{{orderedProducts}}</p></div>
 
     <button class="btn btn-info col-sm-12" type="button" v-on:click="makeOrder()">Make an order</button>
+        <button class="btn btn-info col-sm-12" type="button" v-on:click="sendOrder()">SEND an order</button>
 
     <div><p>order</p></div>
     <div><p>{{order}}</p></div>
@@ -25,7 +26,7 @@
 import Order from '../components/Order.vue'
 import Footer from '../components/Footer'
 import ContactDetails from '../components/ContactDetails'
-//import axios from 'axios';
+import axios from 'axios';
 
 
 export default {
@@ -40,6 +41,8 @@ export default {
           details : "",
           products : [],
           orderedProducts : [],
+          productsList : [],
+          order : "",
         }
     },
     created() {
@@ -53,21 +56,27 @@ export default {
       this.orderedProducts = data;
     },
     makeOrder: function () {
-      this.order = {
+      for(var i = 0, length = this.orderedProducts.length; i<length;i++){
+        this.productsList.push({product_id: this.orderedProducts[i]._id, count:this.orderedProducts[i].quantity})
+      }
+      this.order = 
+      {
         date: new Date(),
-        //orderStatus: "5ff8a01cd46aeb48742770f0",
+        orderStatusID: "5ff8a01cd46aeb48742770f0",
         userName: this.details.userName,
         email: this.details.email,
         phone: this.details.phone,
-        products: this.orderedProducts,
+        products: this.productsList,
       }
+
     },
-    /*
     sendOrder: function () {
-       axios
-          .post('http://127.0.0.1:3000/orders', this.order )
+       axios.post('http://127.0.0.1:3000/orders', this.order )
+       .then((res)=> {
+         console.warn(res)
+       })
     },
-    */
+    
   }
 }
 </script>

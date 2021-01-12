@@ -59,8 +59,8 @@ export default {
         },
   },
       props: {
-        productsToFilter: [],
-        categories : [],
+        productsToFilter: Array,
+        categories : Array,
     },
 
 }

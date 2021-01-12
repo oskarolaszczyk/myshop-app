@@ -65,7 +65,7 @@ export default {
     };
   },
   props: {
-    cartProducts: [],
+    cartProducts: Array,
   },
   mounted: function () {
     for (var i = 0, length = this.cartProducts.length; i < length; i++) {
@@ -83,7 +83,6 @@ export default {
     plus: function (product) {
       for (var i = 0, length = this.productsQuantity.length; i < length; i++) {
         if (this.productsQuantity[i]._id == product._id) {
-          // można dodać w ifie sprawdzanie czy liczba jest mniejsza bądź równa liczbie produktów na magazynie
           this.productsQuantity[i].quantity++;
         }
       }
@@ -103,11 +102,10 @@ export default {
     deleteProduct: function (product) {
       for (var i = 0, length = this.productsQuantity.length; i < length; i++) {
         if (this.productsQuantity[i]._id == product._id) {
-          //this.productsQuantity[i].quantity=0;
           this.productsQuantity.splice(i, 1);
+          length--
         }
       }
-      //do poprawy, przy usuwaniu pierwszego elementu wywala błąd i nieaktualizuje
       this.updateTotalPrice();      
     },
     updateTotalPrice: function () {

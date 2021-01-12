@@ -65,7 +65,7 @@ export default {
       },
   },
     props: {
-      filteredProducts: [],
+      filteredProducts: Array,
     },
 }
 </script>
