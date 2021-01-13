@@ -17,7 +17,7 @@
     </table>
   </div>
     <div>
-      <button class="btn btn-info col-sm-12" type="button" v-on:click="makeAnOrder"> Confirm products </button>
+      <button class="confirmbutton btn btn-info col-sm-12" type="button" v-on:click="makeAnOrder"> Confirm products </button>
     </div> 
   </div>
 </template>
@@ -51,6 +51,7 @@ export default {
       },
       makeAnOrder: function () {
         this.$emit("cart-event", this.productsInCart);
+        document.querySelector(".confirmbutton").style.backgroundColor = "green";
       },
   },
     props: {

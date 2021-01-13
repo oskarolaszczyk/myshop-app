@@ -36,7 +36,7 @@
       </div>
     </div>
     <button
-      class="btn btn-info col-sm-12"
+      class="confirmdetailsbutton btn btn-info col-sm-12"
       type="button"
       v-on:click="emitDetails()"
     >
@@ -64,6 +64,7 @@ export default {
         phone: this.phone,
       };
       this.$emit("details-event", details);
+      document.querySelector(".confirmdetailsbutton").style.backgroundColor = "green";
     },
   },
 };

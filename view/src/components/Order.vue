@@ -48,7 +48,7 @@
       <h2>Total price: {{totalPrice}}</h2>
     </div>
     <div>
-      <button class="btn btn-info col-sm-12" type="button" v-on:click="emitOrder">
+      <button class="confirmbutton btn btn-info col-sm-12" type="button" v-on:click="emitOrder">
         Confirm products
       </button>
     </div>
@@ -119,6 +119,8 @@ export default {
     },
     emitOrder: function () {
       this.$emit("order-event", this.productsQuantity);
+      document.querySelector(".confirmbutton").style.backgroundColor = "green";
+
     }  
   },
   
