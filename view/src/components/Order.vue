@@ -45,7 +45,7 @@
       </table>
     </div>
     <div>
-      <h2>Total price: {{totalPrice}}</h2>
+      <p class="totalprice">Total price: {{totalPrice}}</p>
     </div>
     <div>
       <button class="confirmbutton btn btn-info col-sm-12" type="button" v-on:click="emitOrder">
@@ -129,6 +129,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.totalprice {
+  text-align: right;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
 h3 {
   margin: 40px 0 0;
 }

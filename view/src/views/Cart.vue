@@ -130,6 +130,10 @@ export default {
   div {
     margin-top: 20px;
   }
+
+  #cart {
+    margin-top: 2em;
+  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

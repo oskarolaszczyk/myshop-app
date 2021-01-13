@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container">
-    <h1>SHOP</h1>
+    <h1 id="header">SHOP</h1>
+    <div class="hr"></div>
     <router-view/>
 
   </div>
@@ -23,10 +24,13 @@ export default {
   h1 {
     margin-top: 30px;
     margin-bottom: 20px;
-    font-size: 35px;
     text-transform: uppercase;
   }
 
+  #header {
+        font-size: 50px;
+        font-weight: 900;
+  }
   h2 {
     margin-top: 20px;
     font-size: 25px;
@@ -41,4 +45,10 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
   }
+
+   .hr {
+    border-bottom: 1px solid #dbdbdb;
+    margin: 3em 0;
+  }
+
 </style>
