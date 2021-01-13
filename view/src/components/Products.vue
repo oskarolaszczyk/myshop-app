@@ -12,7 +12,7 @@
             <td>{{product.name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
-            <td> <button class="btn btn-info col-sm-12" type="button" v-on:click="addToCart(product)"  > BUY </button> </td>
+            <td> <button class="buybutton btn btn-info col-sm-12" type="button" v-on:click="addToCart(product)"  > BUY </button> </td>
         </tr>
     </table>
   </div>
@@ -38,7 +38,16 @@ export default {
               bool = true;
             }
         }
-        if (!bool) this.productsInCart.push(product)
+        if (!bool) {
+          this.productsInCart.push(product)
+
+          document.querySelectorAll('.buybutton').forEach(function(e) {
+          e.addEventListener('click', function() {
+            this.style.backgroundColor = "red";
+              })
+            });
+        }
+      
       },
       makeAnOrder: function () {
         this.$emit("cart-event", this.productsInCart);
