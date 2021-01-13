@@ -7,7 +7,7 @@
     <ContactDetails
           @details-event="handleDetails"        
     />
-    <button class="btn btn-info col-sm-12" type="button" v-on:click="makeOrder()">Make an order</button>
+    <button class="makeorderbutton btn btn-info col-sm-12" type="button" v-on:click="makeOrder()">Make an order</button>
     <div><p>{{order}}</p></div>
     <button class="btn btn-info col-sm-12" type="button" v-on:click="sendOrder()">Send an order</button>
 
@@ -133,6 +133,10 @@ export default {
 
   #cart {
     margin-top: 2em;
+  }
+
+  .makeorderbutton {
+    margin-top: 20px;
   }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
